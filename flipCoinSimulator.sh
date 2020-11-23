@@ -2,12 +2,12 @@
 
 echo "Welcome to Flip Coin Simulation Problem"
 
-#UC-2 Using Loop Show number of times Head and Tail won
 heads=0         # initially heads is 0
 tails=0         # initially tails is 0
-echo -n "Enter number of times to flip the coin: "
-read n
-for (( i=0;i<n;i++ )) # run the while loop till heads and tails are less then 11
+
+#UC-3 Continue Loop till Head or Tail wins 21 times
+
+while [[ $heads -lt 21 && $tails -lt 21 ]] # run the while loop till heads and tails are less then 11
 do
         temp=$((1+RANDOM%2)); # randomly generating heads or tails
         if [ $temp -eq 1 ]      # if temp is equal to 1
@@ -19,5 +19,16 @@ do
         tails=$((tails+1))      # then increment tails
         fi
 done
-echo "Head count : $heads"
-echo "Tail count : $tails"
+
+echo "No. of times Heads wins : $heads "
+echo "No. of times Tails wins : $tails "
+
+if [[ $heads -gt $tails ]]
+then
+        echo "Heads wins 21 times first"
+        echo "Heads wins by $((heads-tails))"
+elif [[ $tails -gt $heads ]]
+then
+        echo "Tails wins 21 times first"
+        echo "Tails wins by $((tails-heads))"
+fi
